@@ -62,15 +62,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public String changeStatus(int id, boolean status){
             int i = userRepo.updateStatusById(id, status ? 1 : 0);
-            User user = userRepo.findById(id);
-
-            if(user.getRole().getId() != 2) {
-                int r = 2;
-                Role j = entityManager.find(Role.class, r);
-
-                user.setRole(j);
-                userRepo.save(user);
-            }
             if (i == 0) {
                 throw new RuntimeException("Failed to complete this request. User should have sent a request to change the status");
             }
