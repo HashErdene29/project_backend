@@ -7,7 +7,8 @@ import lombok.Data;
 @Entity
 public class Offer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq2")
+    @SequenceGenerator(name = "seq2", initialValue = 3)
     private int id;
 
     @Enumerated(EnumType.STRING)

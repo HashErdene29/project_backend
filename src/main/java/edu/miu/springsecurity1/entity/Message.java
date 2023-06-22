@@ -7,7 +7,8 @@ import lombok.Data;
 @Entity
 public class Message {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq1")
+    @SequenceGenerator(name = "seq1", initialValue = 3)
     private int id;
 
     private String message;

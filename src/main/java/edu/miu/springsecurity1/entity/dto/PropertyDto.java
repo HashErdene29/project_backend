@@ -16,6 +16,7 @@ public class PropertyDto {
     private int bathNo;
     private float sqft;
     private int garageNo;
+    private int price;
     private AddressDto address;
     private UserDto owner;
 }

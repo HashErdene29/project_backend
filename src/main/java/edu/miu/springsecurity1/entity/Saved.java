@@ -7,7 +7,8 @@ import lombok.Data;
 @Entity
 public class Saved {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq3")
+    @SequenceGenerator(name = "seq3", initialValue = 2)
     private int id;
 
     @ManyToOne
