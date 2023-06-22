@@ -15,7 +15,9 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -63,7 +65,8 @@ public class UserServiceImpl implements UserService {
     public String changeStatus(int id, boolean status){
             int i = userRepo.updateStatusById(id, status ? 1 : 0);
             if (i == 0) {
-                throw new RuntimeException("Failed to complete this request. User should have sent a request to change the status");
+                System.out.println("jtkhl================================");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Failed to complete this request. User should have sent a request to change the status");
             }
             return "Successfully completed";
     }

@@ -2,10 +2,7 @@ package edu.miu.springsecurity1.controller;
 
 import edu.miu.springsecurity1.entity.User;
 import edu.miu.springsecurity1.entity.dto.UserDto;
-import edu.miu.springsecurity1.entity.dto.UserListDto;
 import edu.miu.springsecurity1.service.UserService;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
