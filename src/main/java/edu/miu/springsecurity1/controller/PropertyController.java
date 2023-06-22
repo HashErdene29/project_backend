@@ -25,7 +25,6 @@ public class PropertyController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_CLIENT')")
     public List<PropertyDto> getAll() {
         return propertyService.getAll();
     }
