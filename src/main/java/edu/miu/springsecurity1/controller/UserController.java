@@ -3,6 +3,8 @@ package edu.miu.springsecurity1.controller;
 import edu.miu.springsecurity1.entity.User;
 import edu.miu.springsecurity1.entity.dto.UserDto;
 import edu.miu.springsecurity1.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +32,9 @@ public class UserController {
     }
 
     @GetMapping("/change/{id}/{status}")
-    public String changeStatus(@PathVariable int id, @PathVariable boolean status){
-        return userService.changeStatus(id, status);
+    public ResponseEntity<String> changeStatus(@PathVariable int id, @PathVariable boolean status){
+        String m = userService.changeStatus(id, status);
+        return new ResponseEntity<>(m, HttpStatus.OK);
     }
 
     @GetMapping("/{id}/req-approval")
