@@ -9,7 +9,6 @@ public class UserDto {
      int id;
 
      String email;
-     String password;
      String firstname;
      String lastname;
      int status;

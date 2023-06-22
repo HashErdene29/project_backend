@@ -16,6 +16,7 @@ public class Property {
     private int id;
 
     private String name;
+    private String description;
     private int bedNo;
     private int bathNo;
     private float sqft;

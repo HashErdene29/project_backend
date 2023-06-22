@@ -24,7 +24,7 @@ public class JwtUtil {
     @Autowired
     UserDetailsService userDetailsService;
     private final String secret = "top-secret";
-    private final long expiration = 5 * 60 * 60 * 60;
+    private final long expiration = new Date().getTime() +  24 * 60 * 60 * 1000;
     //     private final long expiration = 5;
     private final long refreshExpiration = 5 * 60 * 60 * 60 * 60;
 

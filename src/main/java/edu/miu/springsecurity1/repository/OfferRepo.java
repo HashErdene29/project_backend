@@ -17,4 +17,7 @@ public interface OfferRepo extends JpaRepository<Offer, Integer> {
 
     void deleteById(int id);
 
+    @Modifying
+    @Query("UPDATE Offer o SET o.status = edu.miu.springsecurity1.entity.OfferStatus.SOLD WHERE o.id = :id and o.status = edu.miu.springsecurity1.entity.OfferStatus.CONTINGENT")
+    void updateStatusByID(int id);
 }

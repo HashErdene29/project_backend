@@ -2,6 +2,7 @@ package edu.miu.springsecurity1.service.impl;
 
 import edu.miu.springsecurity1.entity.Message;
 import edu.miu.springsecurity1.entity.Offer;
+import edu.miu.springsecurity1.entity.OfferHistory;
 import edu.miu.springsecurity1.entity.Saved;
 import edu.miu.springsecurity1.entity.dto.OfferDto;
 import edu.miu.springsecurity1.entity.dto.SavedDto;
@@ -44,5 +45,9 @@ public class OfferServiceImpl implements OfferService {
                         .stream()
                         .map( p -> modelMapper.map(p,OfferDto.class))
                         .collect(Collectors.toList());
+    }
+
+    public void completeOffer(int id){
+        offerRepo.updateStatusByID(id);
     }
 }

@@ -13,4 +13,6 @@ public interface OfferService {
     OfferDto getById(int id);
 
     List<OfferDto> getAll();
+
+    void completeOffer(int id);
 }

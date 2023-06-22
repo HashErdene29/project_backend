@@ -38,4 +38,8 @@ public class OfferController {
         offerService.delete(id);
     }
 
+    @GetMapping("/complete/{id}")
+    public void completeOffer(@PathVariable int id){
+        offerService.completeOffer(id);
+    }
 }
