@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
+
 import java.util.List;
 
 @Entity
@@ -19,12 +21,11 @@ public class User {
     private String password;
     private String firstname;
     private String lastname;
+    private int status;
+    private boolean isSend;
 
-    @JsonBackReference
-    @OneToOne(mappedBy = "user")
-    private Product product;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable
-    private List<Role> roles;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 }

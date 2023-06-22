@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,19 +17,17 @@ public class AwesomeUserDetails implements UserDetails {
     private String email;
     @JsonIgnore
     private String password;
-    private List<Role> roles;
+    private Role roles;
 
     public AwesomeUserDetails(User user) {
         this.email = user.getEmail();
         this.password = user.getPassword();
-        this.roles = user.getRoles();
+        this.roles = user.getRole();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRole()))
-                .collect(Collectors.toList());
+        return Collections.singletonList(new SimpleGrantedAuthority(roles.getRole()));
     }
 
     @Override

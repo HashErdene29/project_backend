@@ -1,0 +1,16 @@
+package edu.miu.springsecurity1.entity.dto;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class UserDto {
+     int id;
+
+     String email;
+     String password;
+     String firstname;
+     String lastname;
+     int role_id;
+}

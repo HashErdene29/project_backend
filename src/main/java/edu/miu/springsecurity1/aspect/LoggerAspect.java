@@ -2,7 +2,7 @@ package edu.miu.springsecurity1.aspect;
 
 
 
-import edu.miu.springsecurity1.service.ProductService;
+import edu.miu.springsecurity1.service.PropertyService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class LoggerAspect {
 
     @Autowired
-    ProductService productService;
+    PropertyService propertyService;
 
     @Pointcut("@annotation(edu.miu.springsecurity1.aspect.annotation.LogMe)")
     public void logMeAnnotation(){

@@ -4,6 +4,8 @@ import lombok.Data;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Data
 public class Role {
@@ -12,4 +14,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String role;
+
+    @OneToMany(mappedBy = "role")
+    private List<User> users;
 }
