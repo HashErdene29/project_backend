@@ -44,7 +44,8 @@ public class AuthServiceImpl implements AuthService {
 
         final String accessToken = jwtUtil.generateToken(userDetails);
         final String refreshToken = jwtUtil.generateRefreshToken(loginRequest.getEmail());
-        var loginResponse = new LoginResponse(accessToken, refreshToken);
+        final int user_id = ((AwesomeUserDetails) userDetails).getUserId();
+        var loginResponse = new LoginResponse(accessToken, refreshToken, user_id);
         return loginResponse;
     }
 
@@ -60,7 +61,7 @@ public class AuthServiceImpl implements AuthService {
             else
                 System.out.println("ACCESS TOKEN IS NOT EXPIRED");
             final String accessToken = jwtUtil.doGenerateToken(  jwtUtil.getSubject(refreshTokenRequest.getRefreshToken()));
-            var loginResponse = new LoginResponse(accessToken, refreshTokenRequest.getRefreshToken());
+            var loginResponse = new LoginResponse(accessToken, refreshTokenRequest.getRefreshToken(), 1);
             // TODO (OPTIONAL) When to renew the refresh token?
             return loginResponse;
         }
