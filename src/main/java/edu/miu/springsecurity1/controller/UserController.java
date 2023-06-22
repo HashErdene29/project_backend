@@ -26,7 +26,7 @@ public class UserController {
 
 
     @PostMapping
-    public void save(@RequestBody User u) {
+    public void save(@RequestBody UserDto u) {
         userService.save(u);
 //        return userService.addUser(userDto.getEmail(), userDto.getPassword(), userDto.getFirstname(), userDto.getLastname(), userDto.getRole_id());
     }

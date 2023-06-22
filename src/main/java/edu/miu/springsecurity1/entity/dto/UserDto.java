@@ -12,5 +12,7 @@ public class UserDto {
      String password;
      String firstname;
      String lastname;
-     int role_id;
+     int status;
+     boolean isSend;
+     RoleDto role;
 }

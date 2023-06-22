@@ -10,7 +10,7 @@ public interface UserService {
     List<UserDto> getAll();
 
 //    User addUser(String email, String password, String firstname, String lastname, Integer role_id);
-    void save(User p);
+    void save(UserDto p);
 
     void delete(int id);
 

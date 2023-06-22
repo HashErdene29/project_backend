@@ -2,13 +2,16 @@ package edu.miu.springsecurity1.service.impl;
 
 import edu.miu.springsecurity1.entity.Property;
 import edu.miu.springsecurity1.entity.Role;
+import edu.miu.springsecurity1.entity.Saved;
 import edu.miu.springsecurity1.entity.User;
+import edu.miu.springsecurity1.entity.dto.RoleDto;
 import edu.miu.springsecurity1.entity.dto.SavedDto;
 import edu.miu.springsecurity1.entity.dto.UserDto;
 import edu.miu.springsecurity1.entity.dto.UserListDto;
 import edu.miu.springsecurity1.repository.RoleRepo;
 import edu.miu.springsecurity1.repository.UserRepo;
 import edu.miu.springsecurity1.service.UserService;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +27,27 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
+    private final RoleRepo roleRepo;
     @Autowired
     ModelMapper modelMapper;
+
+    @Autowired
+    EntityManager entityManager;
     @Override
-    public void save(User p) {
-        userRepo.save(p);
+    public void save(UserDto p) {
+        User user = new User();
+        user.setEmail(p.getEmail());
+        user.setPassword("$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2");
+        user.setFirstname(p.getFirstname());
+        user.setLastname(p.getLastname());
+        user.setStatus(p.getStatus());
+        user.setSend(p.isSend());
+
+        int i = p.getRole().getId();
+        Role r = entityManager.find(Role.class, i);
+        user.setRole(r);
+
+        userRepo.save(user);
     }
 
     @Override

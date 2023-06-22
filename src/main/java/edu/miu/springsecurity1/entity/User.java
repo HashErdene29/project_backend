@@ -1,12 +1,8 @@
 package edu.miu.springsecurity1.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Type;
-
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -25,7 +21,7 @@ public class User {
     private boolean isSend;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private Role role;
 }
