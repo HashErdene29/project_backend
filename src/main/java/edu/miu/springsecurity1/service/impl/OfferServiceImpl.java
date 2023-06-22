@@ -50,4 +50,9 @@ public class OfferServiceImpl implements OfferService {
     public void completeOffer(int id){
         offerRepo.updateStatusByID(id);
     }
+
+    @Override
+    public OfferDto getByCustomerIdandPropertyId(int customerId, int propertyId) {
+        return modelMapper.map(offerRepo.findByCustomer_IdAndAndProperty_Id(customerId, propertyId), OfferDto.class);
+    }
 }

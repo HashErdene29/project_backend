@@ -15,4 +15,6 @@ public interface OfferService {
     List<OfferDto> getAll();
 
     void completeOffer(int id);
+
+    OfferDto getByCustomerIdandPropertyId(int customerid, int propertyId);
 }
