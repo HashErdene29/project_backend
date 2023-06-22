@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
     public String sendReqApproval(int id){
         int i = userRepo.updateReqStatus(id);
         if(i == 0) {
-            return "Failed to complete this request.";
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Failed to complete this request.");
         } else {
             return "Successfully completed";
         }
