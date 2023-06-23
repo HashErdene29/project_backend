@@ -5,6 +5,9 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"customer_id", "property_id"})
+})
 public class Saved {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq3")
