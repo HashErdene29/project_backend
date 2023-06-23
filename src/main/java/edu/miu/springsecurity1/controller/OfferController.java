@@ -49,4 +49,14 @@ public class OfferController {
         return ResponseEntity.ok(offer);
     }
 
+    @GetMapping("/findbycustomer/{customerId}")
+    public List<OfferDto> getOffersbyCustomer(@PathVariable("customerId") int customerId) {
+        return offerService.getOffersByCustomerId(customerId);
+    }
+
+    @GetMapping("/findbyproperty/{propertyId}")
+    public List<OfferDto> getOffersByProperty(@PathVariable("propertyId") int propertyId) {
+        return offerService.getOffersByPropertyId(propertyId);
+    }
+
 }

@@ -55,4 +55,22 @@ public class OfferServiceImpl implements OfferService {
     public OfferDto getByCustomerIdandPropertyId(int customerId, int propertyId) {
         return modelMapper.map(offerRepo.findByCustomer_IdAndAndProperty_Id(customerId, propertyId), OfferDto.class);
     }
+
+    public List<OfferDto> getOffersByCustomerId(int customerId) {
+        var offers = offerRepo.findByCustomer_Id(customerId);
+        return
+                offers
+                        .stream()
+                        .map( p -> modelMapper.map(p,OfferDto.class))
+                        .collect(Collectors.toList());
+    }
+
+    public List<OfferDto> getOffersByPropertyId(int propertyId) {
+        var offers = offerRepo.findByProperty_Id(propertyId);
+        return
+                offers
+                        .stream()
+                        .map( p -> modelMapper.map(p,OfferDto.class))
+                        .collect(Collectors.toList());
+    }
 }

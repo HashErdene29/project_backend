@@ -46,6 +46,10 @@ public class AwesomeUserDetails implements UserDetails {
         return user.getId();
     }
 
+    public int getRoleId() {
+        return user.getRole().getId();
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
