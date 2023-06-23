@@ -20,4 +20,5 @@ public interface OfferService {
 
     List<OfferDto> getOffersByCustomerId(int customerId);
     List<OfferDto> getOffersByPropertyId(int propertyId);
+
 }

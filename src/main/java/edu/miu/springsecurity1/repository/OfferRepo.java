@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface OfferRepo extends JpaRepository<Offer, Integer> {
@@ -17,7 +18,7 @@ public interface OfferRepo extends JpaRepository<Offer, Integer> {
 
     void deleteById(int id);
 
-    Offer findByCustomer_IdAndAndProperty_Id(int customerId, int propertyId);
+    Optional<Offer> findByCustomer_IdAndAndProperty_Id(int customerId, int propertyId);
 
     List<Offer> findByCustomer_Id(int customerId);
 
@@ -32,7 +33,4 @@ public interface OfferRepo extends JpaRepository<Offer, Integer> {
 
     @Query("UPDATE Offer o SET o.status = edu.miu.springsecurity1.entity.OfferStatus.CANCELLED WHERE o.id = :id and o.status = edu.miu.springsecurity1.entity.OfferStatus.CONTINGENT")
     Offer cancelContingent(int id);
-
-    @Query("UPDATE Offer o SET o.status = edu.miu.springsecurity1.entity.OfferStatus.REJECTED WHERE o.id = :id and o.status = edu.miu.springsecurity1.entity.OfferStatus.CONTINGENT")
-    Offer cancelOfferByCustomer(int id);
 }
