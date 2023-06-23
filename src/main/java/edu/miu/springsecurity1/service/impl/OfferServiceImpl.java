@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,13 +48,28 @@ public class OfferServiceImpl implements OfferService {
                         .collect(Collectors.toList());
     }
 
-    public void completeOffer(int id){
-        offerRepo.updateStatusByID(id);
+    public OfferDto completeOffer(int id){
+        return modelMapper.map(offerRepo.updateStatusByID(id), OfferDto.class);
+    }
+
+    public OfferDto updateOffertoCont(int id){
+        return modelMapper.map(offerRepo.updateStatusToContingent(id), OfferDto.class);
+    }
+
+    public OfferDto cancelOfferByOwner(int id){
+        return modelMapper.map(offerRepo.cancelContingent(id), OfferDto.class);
     }
 
     @Override
     public OfferDto getByCustomerIdandPropertyId(int customerId, int propertyId) {
-        return modelMapper.map(offerRepo.findByCustomer_IdAndAndProperty_Id(customerId, propertyId), OfferDto.class);
+        Optional<Offer> optionalOffer = offerRepo.findByCustomer_IdAndAndProperty_Id(customerId, propertyId);
+        Offer offer = optionalOffer.orElse(null);
+
+        if(offer == null){
+            return null;
+        }
+        return modelMapper.map(offer, OfferDto.class);
+//        return modelMapper.map(offerRepo.findByCustomer_IdAndAndProperty_Id(customerId, propertyId), OfferDto.class);
     }
 
     public List<OfferDto> getOffersByCustomerId(int customerId) {

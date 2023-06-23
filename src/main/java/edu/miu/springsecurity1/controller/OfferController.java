@@ -43,6 +43,16 @@ public class OfferController {
         offerService.completeOffer(id);
     }
 
+    @GetMapping("/updatecont/{id}")
+    public void updateOfferCont(@PathVariable int id){
+        offerService.updateOffertoCont(id);
+    }
+
+    @GetMapping("/cancel/{id}")
+    public void cancelOffer(@PathVariable int id){
+        offerService.cancelOfferByOwner(id);
+    }
+
     @GetMapping("/findby/{customerId}/{propertyId}")
     public ResponseEntity<OfferDto> getById(@PathVariable("customerId") int customerId, @PathVariable("propertyId") int propertyId) {
         var offer = offerService.getByCustomerIdandPropertyId(customerId, propertyId);
