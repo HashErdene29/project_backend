@@ -36,13 +36,15 @@ public class PropertyController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id) {
-        propertyService.delete(id);
+    public String delete(@PathVariable int id) {
+        return propertyService.delete(id);
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable("id") int propertyId) {
+    public void update(@PathVariable("id") int propertyId, @RequestBody PropertyDto p) {
         //call service
+        System.out.println("fdghskj------------------------------" + propertyId + p);
+        propertyService.updatePropertyById(propertyId, p.getName(), p.getPrice(), p.getDescription());
     }
 
     @GetMapping("/findby/{ownerId}")
