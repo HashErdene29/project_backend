@@ -1,8 +1,10 @@
 package edu.miu.springsecurity1.service.impl;
 
 import edu.miu.springsecurity1.entity.Property;
+import edu.miu.springsecurity1.entity.Saved;
 import edu.miu.springsecurity1.entity.dto.PropertyDto;
 import edu.miu.springsecurity1.repository.PropertyRepo;
+import edu.miu.springsecurity1.repository.SavedRepo;
 import edu.miu.springsecurity1.service.PropertyService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PropertyServiceImpl implements PropertyService {
     private final PropertyRepo propertyRepo;
+    private final SavedRepo savedRepo;
     @Autowired
     ModelMapper modelMapper;
     @Override
@@ -27,6 +30,8 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     public void delete(int id) {
+        List<Saved> savedlist = savedRepo.findByProperty_Id(id);
+        savedRepo.deleteAll(savedlist);
         propertyRepo.deleteById(id);
     }
 
