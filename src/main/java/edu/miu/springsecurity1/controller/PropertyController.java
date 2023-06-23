@@ -26,13 +26,13 @@ public class PropertyController {
 
     @GetMapping
     public List<PropertyDto> getAll() {
-        return propertyService.getAllExceptSold();
+        return propertyService.getAll();
     }
 
-//    @GetMapping("/except")
-//    public List<PropertyDto> getAllExceptSold() {
-//        return propertyService.getAllExceptSold();
-//    }
+    @GetMapping("/except")
+    public List<PropertyDto> getAllExceptSold() {
+        return propertyService.getAllExceptSold();
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<PropertyDto> getById(@PathVariable int id) {
