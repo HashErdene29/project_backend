@@ -13,4 +13,6 @@ public interface SavedService {
     SavedDto getById(int id);
 
     List<SavedDto> getAll();
+
+    SavedDto getByCustomerAndProperty(int customerId, int propertyId);
 }

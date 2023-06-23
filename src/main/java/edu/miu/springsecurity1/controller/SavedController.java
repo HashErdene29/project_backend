@@ -37,4 +37,10 @@ public class SavedController {
     public void delete(@PathVariable int id) {
         savedService.delete(id);
     }
+
+    @GetMapping("/getby/{customerId}/{propertyId}")
+    public ResponseEntity<SavedDto> getbyCustomerandProperty(@PathVariable("customerId") int customerId, @PathVariable("propertyId") int propertyId) {
+        var saved = savedService.getByCustomerAndProperty(customerId, propertyId);
+        return ResponseEntity.ok(saved);
+    }
 }

@@ -13,13 +13,16 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class OfferServiceImpl implements OfferService {
     private final OfferRepo offerRepo;
@@ -48,16 +51,16 @@ public class OfferServiceImpl implements OfferService {
                         .collect(Collectors.toList());
     }
 
-    public OfferDto completeOffer(int id){
-        return modelMapper.map(offerRepo.updateStatusByID(id), OfferDto.class);
+    public void completeOffer(int id){
+        offerRepo.updateStatusByID(id);
     }
 
-    public OfferDto updateOffertoCont(int id){
-        return modelMapper.map(offerRepo.updateStatusToContingent(id), OfferDto.class);
+    public void updateOffertoCont(int id){
+        offerRepo.updateStatusToContingent(id);
     }
 
-    public OfferDto cancelOfferByOwner(int id){
-        return modelMapper.map(offerRepo.cancelContingent(id), OfferDto.class);
+    public void cancelOfferByOwner(int id){
+        offerRepo.cancelContingent(id);
     }
 
     @Override
@@ -71,6 +74,23 @@ public class OfferServiceImpl implements OfferService {
         return modelMapper.map(offer, OfferDto.class);
 //        return modelMapper.map(offerRepo.findByCustomer_IdAndAndProperty_Id(customerId, propertyId), OfferDto.class);
     }
+
+    @Override
+    public List<OfferDto> getCustomerHistoryOffers(int customerId) {
+        List<Offer> optionalOffers = offerRepo.findCustomersHistory(customerId).orElse(Collections.emptyList());
+
+        if(optionalOffers.isEmpty()){
+            return null;
+        }
+        return
+                optionalOffers
+                        .stream()
+                        .map( p -> modelMapper.map(p,OfferDto.class))
+                        .collect(Collectors.toList());
+//        return modelMapper.map(offerRepo.findByCustomer_IdAndAndProperty_Id(customerId, propertyId), OfferDto.class);
+    }
+
+
 
     public List<OfferDto> getOffersByCustomerId(int customerId) {
         var offers = offerRepo.findByCustomer_Id(customerId);

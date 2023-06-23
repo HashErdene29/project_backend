@@ -14,15 +14,17 @@ public interface OfferService {
 
     List<OfferDto> getAll();
 
-    OfferDto completeOffer(int id);
+    void completeOffer(int id);
 
     OfferDto getByCustomerIdandPropertyId(int customerid, int propertyId);
 
     List<OfferDto> getOffersByCustomerId(int customerId);
     List<OfferDto> getOffersByPropertyId(int propertyId);
 
-    OfferDto updateOffertoCont(int id);
+    void updateOffertoCont(int id);
 
-    OfferDto cancelOfferByOwner(int id);
+    void cancelOfferByOwner(int id);
+
+    List<OfferDto> getCustomerHistoryOffers(int customerId);
 
 }

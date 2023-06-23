@@ -69,4 +69,11 @@ public class OfferController {
         return offerService.getOffersByPropertyId(propertyId);
     }
 
+    @GetMapping("/history/{customerId}")
+    public List<OfferDto> getHistoryOffers(@PathVariable("customerId") int customerId) {
+        return offerService.getCustomerHistoryOffers(customerId);
+    }
+
+
+
 }
