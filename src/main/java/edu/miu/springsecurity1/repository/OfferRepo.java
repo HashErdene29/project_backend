@@ -23,7 +23,7 @@ public interface OfferRepo extends JpaRepository<Offer, Integer> {
     List<Offer> findByCustomer_Id(int customerId);
 
     List<Offer> findByProperty_Id(int propertyId);
-    @Query("select o from Offer o where o.property.owner.id = :ownerId and o.status = edu.miu.springsecurity1.entity.OfferStatus.PENDING")
+    @Query("select o from Offer o where o.property.owner.id = :ownerId and (o.status = edu.miu.springsecurity1.entity.OfferStatus.PENDING OR o.status = edu.miu.springsecurity1.entity.OfferStatus.CONTINGENT)")
     List<Offer> findByOwnerId(int ownerId);
 
     @Modifying
@@ -37,6 +37,10 @@ public interface OfferRepo extends JpaRepository<Offer, Integer> {
     @Modifying
     @Query("UPDATE Offer o SET o.status = edu.miu.springsecurity1.entity.OfferStatus.AVAILABLE WHERE o.id = :id and o.status = edu.miu.springsecurity1.entity.OfferStatus.CONTINGENT")
     void cancelContingent(int id);
+
+    @Modifying
+    @Query("UPDATE Offer o SET o.status = edu.miu.springsecurity1.entity.OfferStatus.REJECTED WHERE o.id = :id and o.status = edu.miu.springsecurity1.entity.OfferStatus.PENDING")
+    void cancelOffer(int id);
 
     @Query("select o from Offer o where o.customer.id = :customerId and o.status = edu.miu.springsecurity1.entity.OfferStatus.SOLD")
     Optional<List<Offer>> findCustomersHistory(int customerId);

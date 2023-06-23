@@ -63,6 +63,10 @@ public class OfferServiceImpl implements OfferService {
         offerRepo.cancelContingent(id);
     }
 
+    public void rejectOfferByOwner(int id){
+        offerRepo.cancelOffer(id);
+    }
+
     @Override
     public OfferDto getByCustomerIdandPropertyId(int customerId, int propertyId) {
         Optional<Offer> optionalOffer = offerRepo.findByCustomer_IdAndAndProperty_Id(customerId, propertyId);

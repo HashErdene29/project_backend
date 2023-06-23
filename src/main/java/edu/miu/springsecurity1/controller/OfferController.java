@@ -53,6 +53,11 @@ public class OfferController {
         offerService.cancelOfferByOwner(id);
     }
 
+    @GetMapping("/reject/{id}")
+    public void rejectOffer(@PathVariable int id){
+        offerService.rejectOfferByOwner(id);
+    }
+
     @GetMapping("/findby/{customerId}/{propertyId}")
     public ResponseEntity<OfferDto> getById(@PathVariable("customerId") int customerId, @PathVariable("propertyId") int propertyId) {
         var offer = offerService.getByCustomerIdandPropertyId(customerId, propertyId);

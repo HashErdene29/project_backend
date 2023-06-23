@@ -27,6 +27,8 @@ public interface OfferService {
 
     void cancelOfferByOwner(int id);
 
+    void rejectOfferByOwner(int id);
+
     List<OfferDto> getCustomerHistoryOffers(int customerId);
 
 
