@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}/approval-list")
-    public List<User> getUsersApprovalList(@PathVariable int id){
+    public List<UserDto> getUsersApprovalList(@PathVariable int id){
         return userService.getApprovalUsersList(id);
     }
 }

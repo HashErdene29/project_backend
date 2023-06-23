@@ -19,6 +19,6 @@ public interface UserService {
     String changeStatus(int id, boolean status);
     String sendReqApproval(int id);
 
-    List<User> getApprovalUsersList(int id);
+    List<UserDto> getApprovalUsersList(int id);
 
 }

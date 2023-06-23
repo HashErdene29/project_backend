@@ -22,7 +22,7 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
     @Transactional
     @Modifying
-    @Query("update User u set u.status = :status where u.id = :id and u.isSend = true")
+    @Query("update User u set u.status = :status, u.isSend = false where u.id = :id and u.isSend = true")
     int updateStatusById(int id, int status);
 
     @Transactional
@@ -33,4 +33,6 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     @Modifying
     @Query("select u from User u where u.id != :id and u.isSend = true and u.status = 0")
     List<User> findAllUsersSentApproval(int id);
+
+
 }

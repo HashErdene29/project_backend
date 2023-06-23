@@ -82,8 +82,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getApprovalUsersList(int id){
-        return userRepo.findAllUsersSentApproval(id);
+    public List<UserDto> getApprovalUsersList(int id){
+        var users = userRepo.findAllUsersSentApproval(id);
+        return
+                users
+                        .stream()
+                        .map( p -> modelMapper.map(p,UserDto.class))
+                        .collect(Collectors.toList());
     }
 
     public List<UserDto> getAll() {

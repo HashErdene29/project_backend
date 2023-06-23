@@ -44,4 +44,9 @@ public class PropertyController {
     public void update(@PathVariable("id") int propertyId) {
         //call service
     }
+
+    @GetMapping("/findby/{ownerId}")
+    public List<PropertyDto> getAllByOwnerId(@PathVariable int ownerId) {
+        return propertyService.getAllByOwnerId(ownerId);
+    }
 }

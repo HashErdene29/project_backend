@@ -13,4 +13,6 @@ public interface PropertyService {
     PropertyDto getById(int id);
 
     List<PropertyDto> getAll();
+
+    List<PropertyDto> getAllByOwnerId(int ownerId);
 }

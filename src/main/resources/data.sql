@@ -9,11 +9,11 @@ VALUES (3, 'CUSTOMER');
 INSERT INTO users (id, email, firstname, lastname, password, status, is_send, role_id)
 VALUES (11, 'admin@gmail.com', 'john', 'smith', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 0, false, 1); --123
 INSERT INTO users (id, email, firstname, lastname, password, status, is_send, role_id)
-VALUES (12, 'owner@gmail.com', 'jane', 'doe', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 1, true, 2); --123
+VALUES (12, 'owner@gmail.com', 'jane', 'doe', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 1, false, 2); --123
 INSERT INTO users (id, email, firstname, lastname, password, status, is_send, role_id)
 VALUES (13, 'customer@gmail.com', 'robert', 'lee', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 0, false, 3); --123
 INSERT INTO users (id, email, firstname, lastname, password, status, is_send, role_id)
-VALUES (14, 'customer2@gmail.com', 'test', 'test', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 0, true, 3); --123
+VALUES (14, 'customer2@gmail.com', 'test', 'test', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 0, true, 2); --123
 
 
 insert into address(id, state, city, street, zipcode)

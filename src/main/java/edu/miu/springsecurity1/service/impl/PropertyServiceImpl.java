@@ -42,4 +42,14 @@ public class PropertyServiceImpl implements PropertyService {
                         .map( p -> modelMapper.map(p,PropertyDto.class))
                         .collect(Collectors.toList());
     }
+
+    public List<PropertyDto> getAllByOwnerId(int ownerId) {
+        var properties = propertyRepo.findPropertiesByOwnerId(ownerId);
+        return
+                properties
+                        .stream()
+                        .map( p -> modelMapper.map(p,PropertyDto.class))
+                        .collect(Collectors.toList());
+    }
+
 }
