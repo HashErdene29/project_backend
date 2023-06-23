@@ -16,4 +16,6 @@ public interface PropertyService {
 
     List<PropertyDto> getAllByOwnerId(int ownerId);
     void updatePropertyById(int id, String name, int price, String description);
+
+    List<PropertyDto> getAllExceptSold();
 }

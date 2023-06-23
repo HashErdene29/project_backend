@@ -26,8 +26,13 @@ public class PropertyController {
 
     @GetMapping
     public List<PropertyDto> getAll() {
-        return propertyService.getAll();
+        return propertyService.getAllExceptSold();
     }
+
+//    @GetMapping("/except")
+//    public List<PropertyDto> getAllExceptSold() {
+//        return propertyService.getAllExceptSold();
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<PropertyDto> getById(@PathVariable int id) {
@@ -51,4 +56,6 @@ public class PropertyController {
     public List<PropertyDto> getAllByOwnerId(@PathVariable int ownerId) {
         return propertyService.getAllByOwnerId(ownerId);
     }
+
+
 }

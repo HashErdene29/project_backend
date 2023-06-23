@@ -69,6 +69,11 @@ public class OfferController {
         return offerService.getOffersByPropertyId(propertyId);
     }
 
+    @GetMapping("/findbyowner/{ownerId}")
+    public List<OfferDto> getOffersByOwner(@PathVariable("ownerId") int ownerId) {
+        return offerService.getOffersByOwnerId(ownerId);
+    }
+
     @GetMapping("/history/{customerId}")
     public List<OfferDto> getHistoryOffers(@PathVariable("customerId") int customerId) {
         return offerService.getCustomerHistoryOffers(customerId);

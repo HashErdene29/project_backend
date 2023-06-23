@@ -90,8 +90,6 @@ public class OfferServiceImpl implements OfferService {
 //        return modelMapper.map(offerRepo.findByCustomer_IdAndAndProperty_Id(customerId, propertyId), OfferDto.class);
     }
 
-
-
     public List<OfferDto> getOffersByCustomerId(int customerId) {
         var offers = offerRepo.findByCustomer_Id(customerId);
         return
@@ -103,6 +101,15 @@ public class OfferServiceImpl implements OfferService {
 
     public List<OfferDto> getOffersByPropertyId(int propertyId) {
         var offers = offerRepo.findByProperty_Id(propertyId);
+        return
+                offers
+                        .stream()
+                        .map( p -> modelMapper.map(p,OfferDto.class))
+                        .collect(Collectors.toList());
+    }
+
+    public List<OfferDto> getOffersByOwnerId(int ownerId) {
+        var offers = offerRepo.findByOwnerId(ownerId);
         return
                 offers
                         .stream()

@@ -1,5 +1,6 @@
 package edu.miu.springsecurity1.repository;
 
+import edu.miu.springsecurity1.entity.OfferStatus;
 import edu.miu.springsecurity1.entity.Property;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -13,6 +14,8 @@ public interface PropertyRepo extends JpaRepository<Property, Integer> {
     List<Property> findAll();
 
     Property findById(int id);
+
+    List<Property> findAllByOffers_StatusNot(OfferStatus status);
 
     void deleteById(int id);
 
