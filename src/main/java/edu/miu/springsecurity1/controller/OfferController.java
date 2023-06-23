@@ -44,7 +44,7 @@ public class OfferController {
     }
 
     @GetMapping("/findby/{customerId}/{propertyId}")
-    public ResponseEntity<OfferDto> getById(@PathVariable int customerId, @PathVariable int propertyId) {
+    public ResponseEntity<OfferDto> getById(@PathVariable("customerId") int customerId, @PathVariable("propertyId") int propertyId) {
         var offer = offerService.getByCustomerIdandPropertyId(customerId, propertyId);
         return ResponseEntity.ok(offer);
     }
